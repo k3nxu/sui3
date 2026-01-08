@@ -13,19 +13,18 @@ export function date() {
 
 export function greet() {
   let currentTime = new Date();
-  let greet = Math.floor(currentTime.getHours() / 6);
-  switch (greet) {
-    case 0:
-      document.getElementById("header_greet").innerHTML = "Good night :)";
-      break;
-    case 1:
-      document.getElementById("header_greet").innerHTML = "Good morning :)";
-      break;
-    case 2:
-      document.getElementById("header_greet").innerHTML = "Good afternoon :)";
-      break;
-    case 3:
-      document.getElementById("header_greet").innerHTML = "Good evening :)";
-      break;
+  let hour = currentTime.getHours();
+  let greet;
+
+  if (hour >= 0 && hour < 6) {
+    greet = "Good night :)";
+  } else if (hour >= 6 && hour < 12) {
+    greet = "Good morning :)";
+  } else if (hour >= 12 && hour < 18) {
+    greet = "Good afternoon :)";
+  } else {
+    greet = "Good evening :)";
   }
+
+  document.getElementById("header_greet").innerHTML = greet;
 }
