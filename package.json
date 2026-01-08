@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "if exist dist rd /s /q dist && vite build",
+    "build": "rimraf dist && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "@iconify/utils": "^2.3.0",
     "fuse.js": "^7.1.0",
+    "rimraf": "^6.1.2",
     "sass": "^1.97.2",
     "vite": "^6.4.1",
     "vite-plugin-handlebars": "^2.0.0",
