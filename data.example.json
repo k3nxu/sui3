@@ -1,5 +1,9 @@
 {
   "theme": "blackboard",
+  "icons": {
+    "favicon": "icon-512.png",
+    "pwa": "icon-512.png"
+  },
   "__available_themes": [
     "blackboard",
     "gazette",
@@ -20,7 +24,9 @@
         {
           "name": "CloudCMD",
           "url": "http://files.example.com",
-          "icon": "folder-multiple-outline"
+          "icon": "folder-multiple-outline",
+          "target": "_blank",
+          "rel": "noopener"
         },
         {
           "name": "Cockpit",
@@ -131,7 +137,9 @@
       "links": [
         {
           "name": "Discord",
-          "url": "https://discord.com"
+          "url": "https://discord.com",
+          "target": "_blank",
+          "rel": "nofollow noopener"
         },
         {
           "name": "Gmail",

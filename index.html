@@ -5,8 +5,9 @@
   <title>SUI2</title>
   <meta charset="utf-8">
   <meta name="description" content="a startpage for your server and / or new tab page">
-  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-  <link rel="shortcut icon" href="/icon-512.png" type="image/png">
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    name="viewport" />
+  <link rel="shortcut icon" href="{{icons.favicon}}" type="image/png">
   <link rel="stylesheet" href="/scss/styles.scss" />
 </head>
 
@@ -71,9 +72,9 @@
         {{#items}}
 
         <div class="apps_item_wrap">
-          <a href="{{url}}" target="_blank" class="apps_item">
+          <a href="{{url}}" target="{{target}}" rel="{{rel}}" class="apps_item">
             <div class="apps_icon">
-            {{{iconify icon}}}
+              {{{iconify icon}}}
             </div>
             <div class="apps_text">
               <span class="name">{{name}}</span>
@@ -93,7 +94,8 @@
         <div class="links_category">
           <h4>{{category}}</h4>
           {{#links}}
-          <a href="{{url}}" target="{{target}}" class="links_item theme_color-border theme_text-select">{{name}}</a>
+          <a href="{{url}}" target="{{target}}" rel="{{rel}}"
+            class="links_item theme_color-border theme_text-select">{{name}}</a>
           {{/links}}
         </div>
         {{/bookmarks}}
