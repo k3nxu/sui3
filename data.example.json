@@ -19,7 +19,8 @@
   ],
   "apps": [
     {
-      "name": "Cloud",
+      "name": "CloudX",
+      "collapsed": true,
       "items": [
         {
           "name": "CloudCMD",
