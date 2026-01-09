@@ -1,10 +1,12 @@
-# SUI2
+# SUI3
 
 *a startpage for your server and / or new tab page*
 
-Originally forked from [sui](https://github.com/jeroenpardon/sui), sui2 adds
-new features like keyboard navigation and PWA to boost your productivity.
-It's a complete refactor, brings new technologies for easier development & deployment.
+**SUI3** is a streamlined static startpage, forked from [reorx/sui2](https://github.com/reorx/sui2).
+
+SUI3 strips away the complex backend dependencies (Docker/Live Server) of its predecessor to focus on a pure, lightweight static site experience. It introduces powerful **JSON-based configuration** for themes, icons, and link behaviors, along with significant accessibility, security, and UI improvements.
+
+What works for **SUI2** also works for **SUI3**, but simpler and faster.
 
 See how keyboard navigation works in action:
 

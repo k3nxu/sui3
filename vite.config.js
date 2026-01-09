@@ -35,8 +35,8 @@ const iconsConfig = (data && data.icons) || {};
 const pwaIcon = iconsConfig.pwa || "icon-512.png";
 
 const manifest = {
-  "name": WEBMANIFEST_NAME || "SUI2",
-  "short_name": WEBMANIFEST_SHORT_NAME || "sui2",
+  "name": WEBMANIFEST_NAME || "SUI3",
+  "short_name": WEBMANIFEST_SHORT_NAME || "sui3",
   "description": WEBMANIFEST_DESCRIPTION || "a startpage for your server and / or new tab page",
   "icons": [
     {
