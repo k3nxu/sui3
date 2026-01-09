@@ -17,7 +17,7 @@ const DATA_FILE = process.env.DATA_FILE,
 let dataFile = DATA_FILE || './data.json'
 console.log('use DATA_FILE: ', dataFile)
 
-var data
+let data
 try {
   data = JSON.parse(readFileSync(dataFile))
 } catch (e) {
@@ -65,14 +65,14 @@ export default defineConfig({
   },
   plugins: [
     NO_PWA ? null
-    : VitePWA({
-      registerType: 'autoUpdate',
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        navigateFallback: '404.html',
-      },
-      manifest,
-    }),
+      : VitePWA({
+        registerType: 'autoUpdate',
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+          navigateFallback: '404.html',
+        },
+        manifest,
+      }),
     handlebars({
       context: data,
       helpers: {
@@ -82,7 +82,7 @@ export default defineConfig({
           return svg
         },
         domain: (url) => {
-          var o = new URL(url);
+          const o = new URL(url);
           if (o.port) {
             return `${o.hostname}:${o.port}`
           }

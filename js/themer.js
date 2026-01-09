@@ -19,7 +19,7 @@ const THEMES = {
   "blackboard": {
     "color-background": "#1a1a1a",
     "color-text-pri": "#FFFDEA",
-    "color-text-acc": "#5c5c5c",
+    "color-text-acc": "#757575",
   },
   "gazette": {
     "color-background": "#F2F7FF",
@@ -29,7 +29,7 @@ const THEMES = {
   "espresso": {
     "color-background": "#21211F",
     "color-text-pri": "#D1B59A",
-    "color-text-acc": "#4E4E4E",
+    "color-text-acc": "#8c8c8c",
   },
   "cab": {
     "color-background": "#F6D305",
@@ -39,7 +39,7 @@ const THEMES = {
   "cloud": {
     "color-background": "#f1f2f0",
     "color-text-pri": "#35342f",
-    "color-text-acc": "#37bbe4",
+    "color-text-acc": "#058bb3",
   },
   "lime": {
     "color-background": "#263238",
@@ -49,7 +49,7 @@ const THEMES = {
   "white": {
     "color-background": "#ffffff",
     "color-text-pri": "#222222",
-    "color-text-acc": "#dddddd",
+    "color-text-acc": "#949494",
   },
   "tron": {
     "color-background": "#242B33",
@@ -74,7 +74,7 @@ const THEMES = {
   "paper": {
     "color-background": "#F8F6F1",
     "color-text-pri": "#4C432E",
-    "color-text-acc": "#AA9A73",
+    "color-text-acc": "#8a7b5c",
   },
   "initial": {
     "color-background": "initial",
@@ -101,7 +101,7 @@ const setTheme = (themeName) => {
 export function loadTheme() {
   // 1. Check if user has explicitly set a theme previously (by checking one of the properties)
   const savedBg = localStorage.getItem("color-background");
-  
+
   if (savedBg) {
     // Restore from localStorage
     setValueFromLocalStorage("color-background");

@@ -43,8 +43,15 @@ function loadSearchItems() {
 }
 
 function handleSearchInput(keyword) {
+  // Security fix: Use textContent instead of innerHTML
   if (keyword) {
-    keywordEl.innerHTML = `<span>${keyword}</span>`
+    keywordEl.textContent = keyword;
+    // Restore proper styling structure if needed, or if CSS expects a span, create it safely
+    // Looking at CSS #keyword span, it expects a span.
+    keywordEl.innerHTML = ''; // Clear
+    const span = document.createElement('span');
+    span.textContent = keyword;
+    keywordEl.appendChild(span);
   } else {
     keywordEl.innerHTML = ''
   }
@@ -58,7 +65,8 @@ function handleSearchInput(keyword) {
     })
     store.searchItems.forEach(item => {
       if (item.nameEl) {
-        item.nameEl.innerHTML = item.name
+        // Security fix: Restore original text safely
+        item.nameEl.textContent = item.name
       }
       item.el.classList.remove('matched')
     })
@@ -80,7 +88,7 @@ function handleSearchInput(keyword) {
 
   store.searchItems.forEach(item => {
     if (item.nameEl) {
-      item.nameEl.innerHTML = item.name
+      item.nameEl.textContent = item.name
     }
     item.el.classList.remove('matched')
   })
@@ -122,10 +130,37 @@ function handleSearchInput(keyword) {
 
 function highlightText(el, match) {
   match.indices.sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]))
-  const pos = match.indices[0]
-  const start = pos[0], end = pos[1] + 1
   const text = match.value
-  el.innerHTML = `${text.slice(0, start)}<em>${text.slice(start, end)}</em>${text.slice(end, text.length)}`
+
+  // Security fix: Build fragment safely instead of innerHTML
+  el.innerHTML = '';
+  let lastIndex = 0;
+
+  // Fuse.js indices are sorted by relevance? We need them sorted by position for reconstruction
+  // Actually the loop above sorted them by length maybe? Let's rely on standard sort for position
+  const indices = [...match.indices].sort((a, b) => a[0] - b[0]);
+
+  indices.forEach(range => {
+    const start = range[0];
+    const end = range[1] + 1;
+
+    // Add text before match
+    if (start > lastIndex) {
+      el.appendChild(document.createTextNode(text.slice(lastIndex, start)));
+    }
+
+    // Add matched text
+    const em = document.createElement('em');
+    em.textContent = text.slice(start, end);
+    el.appendChild(em);
+
+    lastIndex = end;
+  });
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    el.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
 }
 
 export function initKeyboardSearch() {
@@ -139,6 +174,19 @@ export function initKeyboardSearch() {
     if (e.key === 'Escape') {
       searchInputEl.value = ''
       handleSearchInput('')
+      searchInputEl.blur() // Also blur on escape
+    }
+  })
+
+  // UX Optimization: Global shortcut "/" to focus search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/') {
+      // Don't trigger if user is already typing in an input
+      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+        return;
+      }
+      e.preventDefault();
+      searchInputEl.focus();
     }
   })
 }
