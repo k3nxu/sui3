@@ -74,12 +74,44 @@ see [Automatic platform ARGs in the global scope](https://docs.docker.com/engine
 
 
 ## `data.json` editing
+There's a full example in [data.example.json](https://github.com/reorx/sui2/blob/master/data.example.json).
 
-There's a full example in [data.example.json](https://github.com/reorx/sui2/blob/master/data.example.json),
-it's self explanatory so I'm not going to write too much about it, maybe a json schema will be created as a supplement in the future.
+### Theme Configuration
+You can set a default theme in `data.json`:
+```json
+"theme": "blackboard"
+```
+Available themes: `blackboard`, `gazette`, `espresso`, `cab`, `cloud`, `lime`, `tron`, `blues`, `passion`, `chalk`, `paper`.
 
-The only thing worth mentioning here is the `icon` attribute,
-it uses the [MDI icon set from Iconify](https://icon-sets.iconify.design/mdi/), you can find any icon you like in this page, and use the name after `mdi:` as the value for the `icon` attribute. For example `mdi:bread-slice` should be used as `"icon": "bread-slice"` in `data.json`.
+### Configurable Icons
+You can customize the Favicon and PWA App Icon by defining the `icons` object:
+```json
+"icons": {
+  "favicon": "favicon.ico",
+  "pwa": "app-icon-512.png"
+}
+```
+If not specified, it defaults to `icon-512.png` for both.
+
+### Link Attributes
+You can customize how bookmarks open using `target` and `rel` attributes:
+```json
+{
+  "name": "External Site",
+  "url": "https://example.com",
+  "target": "_blank",
+  "rel": "nofollow noopener"
+}
+```
+
+### Icons
+The `icon` attribute uses the [MDI icon set from Iconify](https://icon-sets.iconify.design/mdi/). usage: `mdi:icon-name` -> `"icon": "icon-name"`.
+
+## New Features
+- **Real-time Clock**: Top-right clock now displays seconds and updates every second.
+- **Search Shortcut**: Press `/` to quickly focus the search bar.
+- **Accessibility**: Improved contrast ratios for better readability on all themes.
+- **Secure Search**: Enhanced search security against XSS.
 
 ## Development
 
